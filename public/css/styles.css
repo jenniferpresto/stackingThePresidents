@@ -1,0 +1,71 @@
+#title {
+	text-align: center;
+}
+
+#container {
+	text-align: center;
+	margin-top: 0px;
+	width: 100%;
+}
+
+.spacer {
+	width: 5%;
+	/*height: 500px;*/
+	display: inline-block;
+}
+
+canvas {
+	background-color: #333333;
+	border: 1px solid black;
+}
+
+#canvas1 {
+	/*float: left;*/
+	display: inline-block;
+}
+
+
+#canvas2 {
+	display: inline-block;
+	float: clear;	
+}
+
+#player1 {
+	width: 500px;
+	display: inline-block;
+
+}
+
+#player2 {
+	width: 500px;
+	display: inline-block;
+}
+
+.hide {
+	display: none;
+}
+
+#winstate {
+	background-color: rgba(0, 0, 0, 0.7);
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	z-index: 20;
+}
+
+.endingwords {
+	position: relative;
+	top: 30%;
+	color: white;
+	font-size: 150%;
+}
+
+#endofgamebuttons {
+	margin-top: 20px;
+}
+/*#rematch, #quit {
+	position: relative;
+}*/

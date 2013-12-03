@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title>Tower of History?</title>
+		<link rel="stylesheet" href="css/styles.css">
+
+	</head>
+	<body>
+		<div id="title">An exciting stacking game!<br>Stack the U.S. Presidents on the box in chronological order, with the oldest at the bottom.<br>
+			(images must be right-side-up)</div>
+		<br>
+		<div id="container">
+			<canvas id="canvas1" width="500" height="500">I'm sorry. Your browser does not support canvas. Too bad, because this site is awesome.</canvas>
+			<div class="spacer"></div>
+			<canvas id="canvas2" width="500" height="500">I'm sorry. Your browser does not support canvas. Too bad, because this site is awesome.</canvas>
+			<div id="player1">Player 1</div>
+			<div class="spacer"></div>
+			<div id="player2">Player 2</div>
+			<br><br>
+			<form id="playerform">
+				<label for="playername">Please type your name</label>
+				<input id="playername" name="playername" placeholder="Please type your name"></input>
+				<button id="playerbutton">Submit</button>
+			</form>
+			<div id="winstate" class = "hide">This is where win notification will go.</div>
+
+		</div> <!-- end of container -->
+		<script src="javascript/jquery-1.10.2.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="javascript/Box2dWeb-2.1.a.3.min.js"></script>
+		<script type="text/javascript" src="javascript/main.js"></script>
+	</body>
+
+
+</html>
