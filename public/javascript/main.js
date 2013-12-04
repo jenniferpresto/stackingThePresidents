@@ -113,6 +113,7 @@ window.onload = function () {
         playerName = $('#playername').val();
         console.log(playerName + ' pushed the button!');
         socket.emit('player name', {name: playerName});
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
     })
 
     socket.on('assign number', function(number) {

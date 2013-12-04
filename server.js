@@ -11,14 +11,17 @@ util.log('server running at port: ' + port);
 
 var io = require('socket.io').listen(app);
 
+var numConnections = 0;
 var numPlayers = 0;
 var player1Name;
 var player2Name;
 var users = []; // will store all user information
+var gameOver = false;
 
 io.set('log level', 2);
 io.sockets.on('connection', function(clientmessage) {
 	util.log('the user ' + clientmessage.id + ' has just connected');
+	numConnections++;
 
 	// if Player 1 has already signed up by the time
 	// Player 2 connects, give Player 1's name to Player 2
@@ -65,6 +68,7 @@ io.sockets.on('connection', function(clientmessage) {
 	clientmessage.on('i won', function(number) {
 		util.log('player ' + number + ' just won!');
 		clientmessage.broadcast.emit('you lose', number); // number not really even necessary
+		gameOver = true;
 	})
 
 	clientmessage.on('first rematch request', function() {
@@ -74,6 +78,7 @@ io.sockets.on('connection', function(clientmessage) {
 
 	clientmessage.on('rematch accepted', function() {
 		clientmessage.broadcast.emit('start new game');
+		gameOver = false;
 	})
 
 	// Below is a partial fix to a potential refresh problem;
@@ -82,6 +87,10 @@ io.sockets.on('connection', function(clientmessage) {
 	clientmessage.on('disconnect', function() {
 		// note: refresh disconnects that user then connects with another id
 		util.log('disconnecting ' + clientmessage.id + '!');
+		numConnections--;
+		if (numConnections == 0) {
+			resetGame();
+		}
 		// if no one's pressed the button, no problem -- skip users.length == 0
 		if (users.length == 1) {
 			if (users[0].id == clientmessage.id) {
@@ -90,13 +99,24 @@ io.sockets.on('connection', function(clientmessage) {
 				numPlayers = 0; // reset number of players to 0
 			}			
 		}
+		// if one player disconnects when the game is over,
+		// refresh everything
+		if (gameOver) {
+			clientmessage.broadcast.emit('your enemy quit');
+			resetGame();
+		}
 	})
 
 	clientmessage.on('i quit', function() {
 		clientmessage.broadcast.emit('your enemy quit');
-		numPlayers = 0;
-		users.length = 0;
-		player1Name = ' ';
-		player2Name = ' ';
+		resetGame();
 	})
 })
+
+function resetGame() {
+	numPlayers = 0;
+	users.length = 0;
+	player1Name = ' ';
+	player2Name = ' ';
+	gameOver = false;
+}

@@ -1,5 +1,18 @@
-#title {
+body {
+	background-color: #A49893;
 	text-align: center;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
+	color: #000000;
+}
+
+#headline {
+	font-weight: 600;
+}
+
+#instructions {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
 }
 
 #container {
@@ -15,7 +28,7 @@
 }
 
 canvas {
-	background-color: #333333;
+	background-color: #423F40;
 	border: 1px solid black;
 }
 
@@ -32,13 +45,19 @@ canvas {
 
 #player1 {
 	width: 500px;
+	font-weight: 400;
 	display: inline-block;
 
 }
 
 #player2 {
 	width: 500px;
+	font-weight: 400;
 	display: inline-block;
+}
+
+#playerform {
+	font-weight: 400;
 }
 
 .hide {
