@@ -6,19 +6,59 @@ body {
 	color: #000000;
 }
 
+#intro {
+	text-align: center;
+	height: 100%; /*use this so can click anywhere to go to next screen*/
+	width: 100%;
+	min-width: 1080px;
+
+}
+
+.instructionScreen {
+	width: 75%;
+	margin: auto;
+	font-size: 100%;
+	font-weight: 400;
+	margin-top: 16px;
+	margin-bottom: 8px;
+}
+
+#instructionsTitle {
+	font-size: 150%;
+	margin-top: 24px;
+	font-weight: 700;
+}
+
+#instructionsSubTitle {
+	font-size: 125%;
+	margin-top: 12px;
+	font-weight: 600;
+}
+
+#clickAnywhere {
+	padding-bottom: 24px;
+}
+
 #headline {
 	font-weight: 600;
 }
 
 #instructions {
-	font-family: 'Raleway', sans-serif;
 	font-weight: 400;
+}
+
+.disable-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: default;
 }
 
 #container {
 	text-align: center;
 	margin-top: 0px;
 	width: 100%;
+	min-width: 1080px;
 }
 
 .spacer {
@@ -40,14 +80,17 @@ canvas {
 
 #canvas2 {
 	display: inline-block;
-	float: clear;	
+}
+
+#clear {
+	clear: both;
 }
 
 #player1 {
 	width: 500px;
 	font-weight: 400;
 	display: inline-block;
-
+	clear: left;
 }
 
 #player2 {
@@ -82,9 +125,10 @@ canvas {
 	font-size: 150%;
 }
 
+#rematchRequest {
+	font-size: 95%;
+}
+
 #endofgamebuttons {
 	margin-top: 20px;
 }
-/*#rematch, #quit {
-	position: relative;
-}*/

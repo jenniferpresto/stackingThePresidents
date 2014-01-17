@@ -107,9 +107,18 @@ window.onload = function () {
     Add non-canvas-specific listeners
     *****************************/
 
+    $('#intro').click(function(event) {
+        event.preventDefault(event);
+        console.log("clicking the main screen!!");
+        $(this).addClass("hide");
+        $('#main').fadeIn(1500);
+        $('#main').removeClass("hide");
+    })
+
     $('button#playerbutton').click(function(event) {
         event.preventDefault(event);
         $('#playerform').addClass('hide');
+        $('#enterNamePrompt').addClass('hide');
         playerName = $('#playername').val();
         console.log(playerName + ' pushed the button!');
         socket.emit('player name', {name: playerName});
@@ -153,6 +162,8 @@ window.onload = function () {
     socket.on('rematch requested', function () {
         console.log('getting rematch request!');
         enemyWantsRematch = true;
+        $('#winstate').append('<br><div class="endingwords" id="rematchRequest">' + enemyName + ' has requested a rematch!</div>');
+
         // if (playerWantsRematch) {
         //     $('#endofgamebuttons').removeClass('hide');
         //     $('#winstate').addClass('hide');
@@ -352,12 +363,13 @@ window.onload = function () {
             event.preventDefault(event);
             console.log('pressing the rematch button');
             $('#endofgamebuttons').addClass('hide');
-            // playerWantsRematch = true; // if you press the button, you want a rematch
+            $('#winstate').append('<br><div class="endingwords" id="rematchRequest"')
             if (enemyWantsRematch) { // if your enemy has already requested it
                 socket.emit('rematch accepted');
                 startRematch();
             } else {
                 socket.emit('first rematch request');
+                $('#winstate').append('<br><div class="endingwords" id="rematchRequest">Waiting for ' + enemyName + '\'s response<br>(Game will restart automatically if ' + enemyName + ' accepts your challenge)</div>');
             }
         })
 
@@ -618,6 +630,10 @@ window.onload = function () {
         $('#winstate').html('<div class="endingwords">Congratulations, ' + playerName + '!<br><br>You won that round!<div id="endofgamebuttons"><button id="rematch">Rematch</button><button id="quit">No more</button></div></div>');
         $('#winstate').removeClass('hide');
         addButtonListeners();
+    }
+
+    function addRematchLine() {
+
     }
 
 

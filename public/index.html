@@ -7,25 +7,40 @@
 
 	</head>
 	<body>
-		<div id="headline">Stacking the Presidents!</div>
-		<div id="instructions">Stack the U.S. Presidents on the box in chronological order, with the oldest at the bottom.<br>(images must be right-side-up)</div>
-		<br>
-		<div id="container">
-			<canvas id="canvas1" width="500" height="500">I'm sorry. Your browser does not support canvas. Too bad, because this site is awesome.</canvas>
-			<div class="spacer"></div>
-			<canvas id="canvas2" width="500" height="500">I'm sorry. Your browser does not support canvas. Too bad, because this site is awesome.</canvas>
-			<div id="player1">Player 1</div>
-			<div class="spacer"></div>
-			<div id="player2">Player 2</div>
-			<br><br>
-			<form id="playerform">
-				<label for="playername">Please type your name</label>
-				<input id="playername" name="playername" placeholder="Name"></input>
-				<button id="playerbutton">Submit</button>
-			</form>
-			<div id="winstate" class = "hide">This is where win notification will go.</div>
+		<section id="intro">
+		<div id="instructionsTitle" class="instructionScreen">Stacking the Presidents!</div>
+		<div id="instructionsSubTitle" class="instructionScreen">A race against history!<br>(sort of)</div>
+		<div class="instructionScreen">You will race your enemy to stack pictures of four Presidents on top of one another. Your screen will be blue. Your enemy&rsquo;s screen will be a hellish red. Stack them on the pedestal in the middle of your screen.</div>
+		<div class="instructionScreen">Stack them right-side-up.</div>
+		<img src="imgs/lincolnCorrect.jpg"><div class="spacer"></div><img src="imgs/lincolnWrong.jpg">
+		<div class="instructionScreen">Stack them in order.</div>
+		<img src="imgs/boxOrder.jpg">
+		<div id="clickAnywhere" class="instructionScreen">Once you&rsquo;ve set these instructions to memory...<br>Click anywhere to continue.</div>
+		</section> <!-- end of intro section -->
 
-		</div> <!-- end of container -->
+		<section id="main" class="hide">
+			<div id="headline" class="disable-select">Stacking the Presidents!</div>
+			<div id="instructions" class="disable-select">Stack the U.S. Presidents on the box in chronological order, with the oldest at the bottom.<br>(images must be right-side-up)</div>
+			<br>
+			<div id="enterNamePrompt">You and your enemy must both enter your names to play.</div>
+			<div id="container">
+				<canvas id="canvas1" width="500" height="500" class="disable-select">I'm sorry. Your browser does not support canvas. Too bad, because this site is awesome.</canvas>
+				<div class="spacer disable-select"></div>
+				<canvas id="canvas2" width="500" height="500" class="disable-select">I'm sorry. Your browser does not support canvas. Too bad, because this site is awesome.</canvas>
+				<div id="clear" class="disable-select"></div>
+				<div id="player1">Player 1</div>
+				<div class="spacer"></div>
+				<div id="player2">Player 2</div>
+				<br><br>
+				<form id="playerform">
+					<label for="playername">Please type your name</label>
+					<input id="playername" name="playername" placeholder="Name"></input>
+					<button id="playerbutton">Submit</button>
+				</form>
+				<div id="winstate" class = "hide">This is where win notification will go.</div>
+
+			</div> <!-- end of container -->
+		</section> <!-- end of main section -->
 		<script src="javascript/jquery-1.10.2.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script type="text/javascript" src="javascript/Box2dWeb-2.1.a.3.min.js"></script>
