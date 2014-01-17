@@ -113,6 +113,7 @@ window.onload = function () {
         $(this).addClass("hide");
         $('#main').fadeIn(1500);
         $('#main').removeClass("hide");
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
     })
 
     $('button#playerbutton').click(function(event) {
