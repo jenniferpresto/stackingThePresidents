@@ -13,7 +13,7 @@ http://code.google.com/p/box2dweb/
 
 window.onload = function () {
 
-    var socket = io.connect(window.location.hostname);
+    var socket = io.connect();
     var playerName; // this will be the name used by this player
     var enemyName; // this will be the name of the other player
     var playerNumber = 0; // this will be 1 or 2
@@ -33,11 +33,11 @@ window.onload = function () {
     // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
     // via http://blog.sethladd.com/2011/09/box2d-javascript-example-walkthrough.html
     window.requestAnimFrame = (function(){
-          return  window.requestAnimationFrame       || 
-                  window.webkitRequestAnimationFrame || 
-                  window.mozRequestAnimationFrame    || 
-                  window.oRequestAnimationFrame      || 
-                  window.msRequestAnimationFrame     || 
+          return  window.requestAnimationFrame       ||
+                  window.webkitRequestAnimationFrame ||
+                  window.mozRequestAnimationFrame    ||
+                  window.oRequestAnimationFrame      ||
+                  window.msRequestAnimationFrame     ||
                   function(/* function */ callback, /* DOMElement */ element){
                     window.setTimeout(callback, 1000 / 60);
                   };
@@ -215,7 +215,7 @@ window.onload = function () {
             // }
             // console.log("Box 0 contact list: ", boxArray[0].m_body.GetContactList());
             // console.log("getBodyList: ", world.GetBodyList());
-            
+
 
         }, true);
 
@@ -224,7 +224,7 @@ window.onload = function () {
             mouseIsDown = false;
             mouseX = undefined;
             mouseY = undefined;
-            
+
             // reset ability to check stacking order next time objects come to rest
             checkRun = false;
         }, true);
@@ -235,7 +235,7 @@ window.onload = function () {
                 canvasPosition = getElementPosition(document.getElementById("canvas1"));
             } else if (playerNumber == 2) {
                 canvasPosition = getElementPosition(document.getElementById("canvas2"));
-            }  
+            }
             console.log("resizing! recalibrating!");
         }, true);
 
@@ -316,7 +316,7 @@ window.onload = function () {
         for (var i = 0; i < NUMBOXES; i++) {
             // create rectangles
             fixDef.shape = new b2PolygonShape;
-            var randWidth = Math.random() * 50 + 50;    // number btwn 50 and 100 
+            var randWidth = Math.random() * 50 + 50;    // number btwn 50 and 100
             var randHeight = Math.random() * 50 + 50;   // number btwn 50 and 100
             fixDef.shape.SetAsBox (halfPixels(randWidth), halfPixels(randHeight)); // half-width, half-height
 
@@ -400,7 +400,7 @@ window.onload = function () {
     function resetBoxes() {
         console.log('calling reset boxes');
         for (var i = 0; i < boxArray.length; i++) {
-            var randWidth = Math.random() * 50 + 50;    // number btwn 50 and 100 
+            var randWidth = Math.random() * 50 + 50;    // number btwn 50 and 100
             var randHeight = Math.random() * 50 + 50;   // number btwn 50 and 100
             var randPosX = (Math.random() * (myCanvas.width - 50)) + 25; // give 25-pixel buffer on each side
             var randPosY = Math.random() * myCanvas.height * 0.5; // top half of screen only
@@ -441,7 +441,7 @@ window.onload = function () {
     }
 
     function halfPixels(pixels) {
-        return pixels / SCALE * 0.5;        
+        return pixels / SCALE * 0.5;
     }
 
     function handleMouseMove(e) {
@@ -455,7 +455,7 @@ window.onload = function () {
         mouseVec = new b2Vec2(pixels(mouseX), pixels(mouseY));
         // Note: aabb stands for "axis-aligned bounding box"; used for testing collisions
         var aabb = new b2AABB();
-        aabb.lowerBound.Set(pixels(mouseX) - 0.001, pixels(mouseY) - 0.001); 
+        aabb.lowerBound.Set(pixels(mouseX) - 0.001, pixels(mouseY) - 0.001);
         aabb.upperBound.Set(pixels(mouseX) + 0.001, pixels(mouseY) + 0.001);
 
         // look for overlapping shapes
@@ -676,13 +676,13 @@ window.onload = function () {
                 if (checkStackingOrder()) {
                     socket.emit('i won', playerNumber);
                     drawWinScreen();
-                    gameOver = true;            
+                    gameOver = true;
                 }
                 checkRun = true;
             }
         }
 
-        // add mousejoints when pick up a box 
+        // add mousejoints when pick up a box
         if (mouseIsDown && (!mouseJoint)) {
             var body = getBodyAtMouse();
             if(body) {
@@ -707,7 +707,7 @@ window.onload = function () {
         }
 
         // stepping through the simulation
-	    // parameters are time step, velocity iteration count, and position iteration count 
+	    // parameters are time step, velocity iteration count, and position iteration count
 	    world.Step(1/60, 10, 10);
 	    // world.DrawDebugData();
 	    world.ClearForces();
