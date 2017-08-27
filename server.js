@@ -1,47 +1,5 @@
-// var http = require('http');
 var util = require('util');
-// var fs = require('fs');
-// // var index = fs.readFileSync(__dirname + '/public/index.html');
-
-// var connect = require('connect');
-// var serveStatic = require('serve-static');
 var port = process.env.PORT || 5000;
-
-
-// function handler (req, res) {
-// 	fs.readFile(__dirname + '/public/index.html',
-// 	            function (err, data) {
-// 	            	if (err) {
-// 	            		res.writeHead(500);
-// 	            		return res.end(err + "Error loading index.html");
-// 	            	}
-// 	            	res.writeHead(200);
-// 	            	// res.end(data);
-// 	            });
-// }
-
-// var app = http.createServer(handler);
-// app.listen(port);
-
-// app = connect();
-// app.use(serveStatic(__dirname + '/public'));
-// app.listen(port);
-// var app = connect.createServer(
-// 	serveStatic(__dirname + '/public')
-// 	).listen(port);
-
-// http.createServer(app).listen(port);
-
-// var server = http.createServer(function(req, res) {
-// 	res.writeHead(200);
-// 	res.end(index);
-// 	// res.end(__dirname + '/public');
-// 	// res.sendFile(__dirname + '/public');
-// 	});
-
-// server.listen(port);
-// var io = require('socket.io')(app);
-// util.log('server running at port: ' + port);
 var express = require('express');
 var app = express();
 app.use(express.static(__dirname + "/public"));
@@ -50,11 +8,6 @@ var io = require ('socket.io')(server);
 server.listen(port);
 
 util.log("Server running on " + port);
-// app.get('/', function (req, res) {
-// 	res.sendFile(__dirname + '/public');
-// });
-
-// var io = require('socket.io').listen(app);
 
 var numConnections = 0;
 var numPlayers = 0;
